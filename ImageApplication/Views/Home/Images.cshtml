@@ -1,0 +1,45 @@
+﻿@using ImageApplication.Models
+@model ImagesViewModel
+@{
+    ViewBag.Title = "Images";
+}
+
+<h2>Images</h2>
+
+@if (!Model.HasPermission)
+{
+    if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <h3 class="alert-danger">@Model.Message</h3>
+    }
+
+<form method="post" action="/home/images">
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            <label>Please enter your password</label>
+            <input name="password" type="password" class="form-control" placeholder="Password" />
+            <input type="hidden" name="id" value="@Model.Image.Id" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            <button class="btn btn-info btn-block">Submit</button>
+        </div>
+    </div>
+</form>
+    
+}
+else
+{
+    <div class="well">
+        <img style="width: 200px" src="~/UploadedImages/@Model.Image.FileName">
+        <h4>Views: @Model.Image.Views</h4>
+    </div>
+}
+
+
+@section scripts{
+
+    <script src="~/Scripts/JavaScript.js"></script>
+}  

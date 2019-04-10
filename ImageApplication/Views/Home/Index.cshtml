@@ -1,33 +1,43 @@
-﻿@{
+﻿@using ImageApplication.Models
+@model IndexViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div style="text-align: center" class="alert alert-success">
+        <strong>Success!</strong> @Model.Message
+    </div>
+}
+
+<form method="post" action="/home/upload" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            <div class="custom-file-upload">
+                <label for="file-upload" class="custom-file-upload1">
+                    <i class="fa fa-cloud-upload"></i> Upload Your Image
+                </label>
+                <input name="image" id="file-upload" type="file" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            <label>Create a password</label>
+            <input id="password" type="password" class="form-control" placeholder="Password" name="Password" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            <button id="submit" class="btn btn-info btn-block">Submit</button>
+        </div>
+    </div>
+</form>
 
 
-
-            <div class="row">
-                <div class="col-md-4 col-lg-offset-4">
-                    <div class="custom-file-upload">
-                        <label for="file-upload" class="custom-file-upload1">
-                            <i class="fa fa-cloud-upload"></i> Upload Your Image
-                        </label>
-                        <input id="file-upload" type="file" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4 col-lg-offset-4">
-                    <label>Create a password</label>
-                    <input id="password" type="password" class="form-control" placeholder="Password" name="Passsword" />
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-4 col-lg-offset-4">
-                    <button id="submit" class="btn btn-info btn-block">Submit</button>
-                </div>
-            </div>
-  
 
 @section scripts{
 
